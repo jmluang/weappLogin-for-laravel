@@ -1,0 +1,18 @@
+{
+    "name": "jmluang/weapp",
+    "description": "weapp login package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jmluang",
+            "email": "ljm9601@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "jmluang\\weapp\\": "src/"
+        }
+    }
+}
