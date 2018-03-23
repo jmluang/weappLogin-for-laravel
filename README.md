@@ -132,6 +132,8 @@ class LoginController extends Controller
 
 2. 微信小程序中
 首先在小程序中引入 js-skd，然后就可以写相关的逻辑了
+```
+// 目录结构
 project
 ├── app.js
 ├── app.json
@@ -145,7 +147,8 @@ project
         │   ├── request.js
         │   ├── session.js
         │   └── utils.js
-        └── weapp.js
+        └── weapp.js
+```
 
 ```javascript
 // filepath app.js
@@ -191,8 +194,8 @@ App({
 'aliases' => [
     // Laravel Framework Facades
     // ...
-	// 'UserRepository' => jmluang\weapp\Facades\UserRepository::class,
-	'UserRepository' => path\to\your\FacadeClass::class,
+    // 'UserRepository' => jmluang\weapp\Facades\UserRepository::class,
+    'UserRepository' => path\to\your\FacadeClass::class,
 ]
 ```
 Done! 
@@ -201,8 +204,10 @@ Done!
 
 
 
-**若本仓库对您有所帮助，欢迎Start
-若发现问题或需要帮助，欢迎提交Issue**
+**若本仓库对您有所帮助，欢迎Start**
+
+**若发现问题或需要帮助，欢迎提交Issue**
+
 感谢！
 
 # LICENSE
