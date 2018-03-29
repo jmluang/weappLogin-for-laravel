@@ -14,7 +14,7 @@ class UserRepository implements UserInterface
 
         $res = User::where('open_id', $open_id)->get();
 
-        if (blank($res)) {
+        if (empty($res->toArray())) {
             User::insert(
                 compact(
                     'uuid',
