@@ -6,9 +6,12 @@ A weapp login logic Laravel warpper
 
 
 # 特点
- - 使用了 Guzzlehttp 来发送请求。Guzzlehttp包含在Laravel框架中，不需要额外安装
+ - 使用了 Guzzlehttp 来发送请求。
  - 使用了 Laravel 的 Eloquent ORM 封装了数据库操作，只需要导入表到数据库中即可。当然了，您也可以使用您自己的逻辑，详情请看文档
 
+# 注意
+ - 请配合开发者工具和js-sdk使用~
+ 
 
 # 安装
 只需要五步即可完成安装部署。
