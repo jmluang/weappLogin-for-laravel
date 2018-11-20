@@ -33,6 +33,7 @@ A weapp login logic Laravel warpper
 php artisan vendor:publish --provider="jmluang\weapp\WeappLoginServiceProvider"
 ```
 参数如下：
+
 | 参数 | 值 | 说明|
 |--|--|--|
 | appid | 你的 AppID | 必须 |
