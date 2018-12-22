@@ -6,18 +6,17 @@ A weapp login logic Laravel warpper
 
 
 # 特点
- - 使用了 Guzzlehttp 来发送请求。
- - 使用了 Laravel 的 Eloquent ORM 封装了数据库操作，只需要导入表到数据库中即可。当然了，您也可以使用您自己的逻辑，详情请看文档
+ - 使用了 Guzzlehttp 来发送请求
+ - 使用了 Laravel 的 Eloquent ORM 封装了数据库操作，只需要导入表到数据库中即可。当然了，您也可以使用您自己的逻辑
 
 # 注意
- - 请配合开发者工具和js-sdk使用~
+ - 请配合开发者工具和js-sdk使用
  
-
 # 安装
 只需要五步即可完成安装部署。
 
 1. 通过 composer 安装:
-` composer require jmluang/weapp `
+` composer require jmluang/weapp:2.* `
 
 2. 添加 Provider 到` config/app.php `中
 ```php
@@ -51,7 +50,7 @@ php artisan vendor:publish --provider="jmluang\weapp\WeappLoginServiceProvider"
 'aliases' => [
     // Laravel Framework Facades
     // ...
-	'UserRepository' => jmluang\weapp\Facades\UserRepository::class,
+	'WeappUserRepository' => jmluang\weapp\Facades\WeappUser::class,
 ]
 ```
 若重写了数据库逻辑，则这里应该使用你自己的 Facade 类：
@@ -59,11 +58,13 @@ php artisan vendor:publish --provider="jmluang\weapp\WeappLoginServiceProvider"
 'aliases' => [
     // Laravel Framework Facades
     // ...
-	'UserRepository' => path\to\your\FacadeClass::class,
+	'WeappUserRepository' => path\to\your\FacadeClass::class,
 ```
-### 
-5. 导入表cSessionInfo到你的数据库
-表字段详情请查看[数据库文件](https://github.com/jmluang/laravel-weapp/blob/master/src/database/cSessionInfo.sql)
+
+5. 迁移数据库
+```php
+php artisan migrate
+```
 若重写了数据库逻辑，则可以忽略这一步
 
 # 使用方法
@@ -84,7 +85,7 @@ Route::get('/weapp/user',"LoginController@user");
 
 namespace App\Http\Controllers;
 use jmluang\weapp\Constants;
-use jmluang\weapp\LoginInterface;
+use jmluang\weapp\WeappLoginInterface as LoginInterface;
 
 class LoginController extends Controller
 {
@@ -131,7 +132,6 @@ class LoginController extends Controller
             ];
         }
     }
-
 }
 ```
 
@@ -192,15 +192,15 @@ App({
 # 使用自己的数据库和逻辑
 
 要使用自己的数据库逻辑，只需要简单的三步操作
-1. 继承接口类` jmluang\weapp\database\UserInterface ` 并实现` storeUserInfo ` 和 ` findUserBySKey `方法
+1. 继承接口类` jmluang\weapp\WeappUserInterface ` 并实现` storeUserInfo ` 和 ` findUserBySKey `方法
 2. 创建Facade类
-3. 在 ` config\app.php `的`aliases数组`中使用您的Facade类覆盖`jmluang\\weapp\\Facades\\UserRepository::class`
+3. 在 ` config\app.php `的`aliases数组`中使用您的Facade类覆盖`jmluang\weapp\Facades\WeappUser::class`
 ```php
 'aliases' => [
     // Laravel Framework Facades
     // ...
-    // 'UserRepository' => jmluang\weapp\Facades\UserRepository::class,
-    'UserRepository' => path\to\your\FacadeClass::class,
+    // 'WeappUserRepository' => jmluang\weapp\Facades\WeappUser::class,
+    'WeappUserRepository' => path\to\your\FacadeClass::class,
 ]
 ```
 Done! 

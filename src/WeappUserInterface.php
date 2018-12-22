@@ -1,9 +1,8 @@
 <?php
 
-namespace jmluang\weapp\database;
+namespace jmluang\weapp;
 
-
-interface UserInterface
+interface WeappUserInterface
 {
     /** save user record
      * @param $userinfo

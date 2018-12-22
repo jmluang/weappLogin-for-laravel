@@ -1,10 +1,12 @@
 <?php
 
-namespace jmluang\weapp;
+namespace jmluang\weapp\repositories;
 
 use \Exception as Exception;
+use jmluang\weapp\Constants;
+use jmluang\weapp\WeappLoginInterface as LoginInterface;
 
-class LoginService implements LoginInterface
+class LoginRepository implements LoginInterface
 {
     public function __construct()
     {
@@ -19,7 +21,7 @@ class LoginService implements LoginInterface
             $encryptedData = self::getHttpHeader(Constants::WX_HEADER_ENCRYPTED_DATA);
             $iv = self::getHttpHeader(Constants::WX_HEADER_IV);
 
-            return AuthAPI::login($code, $encryptedData, $iv);
+            return LoginService::login($code, $encryptedData, $iv);
         } catch (Exception $e) {
             return [
                 'loginState' => Constants::E_AUTH,
@@ -33,7 +35,7 @@ class LoginService implements LoginInterface
         try {
             $skey = self::getHttpHeader(Constants::WX_HEADER_SKEY);
 
-            return AuthAPI::checkLogin($skey);
+            return LoginService::checkLogin($skey);
         } catch (Exception $e) {
             return [
                 'loginState' => Constants::E_AUTH,

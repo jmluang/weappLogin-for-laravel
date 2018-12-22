@@ -1,12 +1,14 @@
 <?php
 
-namespace jmluang\weapp;
+namespace jmluang\weapp\repositories;
 
 use \Exception as Exception;
 use \GuzzleHttp\Client;
-use UserRepository;
+use jmluang\weapp\Constants;
 
-class AuthAPI
+use WeappUserRepository;
+
+class LoginService
 {
 
     /**
@@ -41,7 +43,7 @@ class AuthAPI
         );
         $userinfo = json_decode($decryptData);
         // 4. 储存到数据库中
-        UserRepository::storeUserInfo($userinfo, $skey, $sessionKey);
+        WeappUserRepository::storeUserInfo($userinfo, $skey, $sessionKey);
 
         return [
             'loginState' => Constants::S_AUTH,
@@ -56,7 +58,7 @@ class AuthAPI
      */
     public static function checkLogin($skey)
     {
-        $userinfo = UserRepository::findUserBySKey($skey);
+        $userinfo = WeappUserRepository::findUserBySKey($skey);
         if ($userinfo === NULL) {
             return [
                 'loginState' => Constants::E_AUTH,
