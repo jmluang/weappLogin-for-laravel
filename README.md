@@ -79,6 +79,7 @@ Route::get('/weapp/user',"LoginController@user");
 
 控制器：
 ```php 
+// filepath app/Http/Controllers/LoginController.php
 <?php
 
 namespace App\Http\Controllers;
@@ -156,12 +157,12 @@ project
 
 ```javascript
 // filepath app.js
-var login = require('./vendor/weapp-login/weapp')
+var login = require('./vendor/weapp')
 
 App({
     onLaunch: function(){
         // 设置登陆url，对应上面Controll的Login方法
-        login.setLoginUrl("https://127.0.0.1:8000/weapp/login")
+        login.setLoginUrl("https://localhost/weapp/login")
         login.login({
             success(result) {
                 if (result) {
