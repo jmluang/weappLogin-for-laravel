@@ -2,7 +2,7 @@
 
 namespace jmluang\weapp;
 
-interface LoginInterface
+interface WeappLoginInterface
 {
     public static function login();
 

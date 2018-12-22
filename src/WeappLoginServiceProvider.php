@@ -3,6 +3,7 @@
 namespace jmluang\weapp;
 
 use Illuminate\Support\ServiceProvider;
+use jmluang\weapp\repositories\LoginRepository;
 
 class WeappLoginServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,10 @@ class WeappLoginServiceProvider extends ServiceProvider
         $this->publishes([
             // publish config file to /app/config
             __DIR__ . '/config/weapp.php' => config_path('weapp.php'),
-        ]);
+        ], 'config');
+
+        // publish databases
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
     /**
@@ -28,7 +32,7 @@ class WeappLoginServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(LoginInterface::class, LoginService::class);
+        $this->app->bind(WeappLoginInterface::class, LoginRepository::class);
     }
 
     /**
@@ -38,6 +42,6 @@ class WeappLoginServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [LoginInterface::class];
+        return [WeappLoginInterface::class];
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
-namespace jmluang\weapp\database;
+namespace jmluang\weapp\repositories;
+
+use jmluang\weapp\WeappUser as User;
+use jmluang\weapp\WeappUserInterface as UserInterface;
 
 class UserRepository implements UserInterface
 {

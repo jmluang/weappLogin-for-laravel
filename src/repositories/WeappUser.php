@@ -1,16 +1,16 @@
 <?php
 
-namespace jmluang\weapp\database;
+namespace jmluang\weapp;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class WeappUser extends Model
 {
     /**
      * defined table
      * @var string
      */
-    protected $table = "cSessionInfo";
+    protected $table = "weapp_user";
 
     /**
      * don't use created_at and update_at
