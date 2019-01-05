@@ -157,7 +157,7 @@ project
 
 ```javascript
 // filepath app.js
-var login = require('./vendor/weapp')
+var login = require('./vendor/weapp-login/weapp')
 
 App({
     onLaunch: function(){
