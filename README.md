@@ -50,7 +50,8 @@ php artisan vendor:publish --provider="jmluang\weapp\WeappLoginServiceProvider"
 'aliases' => [
     // Laravel Framework Facades
     // ...
-	'WeappUserRepository' => jmluang\weapp\Facades\WeappUser::class,
+	'WeappUserRepository' => jmluang\weapp\Facades\WeappUserRepository::class,
+	'WeappUser' => jmluang\weapp\Facades\WeappUser::class,
 ]
 ```
 若重写了数据库逻辑，则这里应该使用你自己的 Facade 类：
@@ -58,7 +59,8 @@ php artisan vendor:publish --provider="jmluang\weapp\WeappLoginServiceProvider"
 'aliases' => [
     // Laravel Framework Facades
     // ...
-	'WeappUserRepository' => path\to\your\FacadeClass::class,
+	'WeappUserRepository' => your\namespace\FacadeClass::class,
+	'WeappUser' => your\namespace\ModelClass::class,
 ```
 
 5. 迁移数据库
