@@ -10,7 +10,6 @@ use WeappUserRepository;
 
 class LoginService
 {
-
     /**
      * 用户登录接口
      * @param  string $code wx.login 颁发的 code

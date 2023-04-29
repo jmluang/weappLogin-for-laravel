@@ -1,6 +1,6 @@
 <?php
 
-namespace jmluang\weapp\repositories;
+namespace jmluang\weapp\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

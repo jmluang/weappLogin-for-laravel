@@ -3,12 +3,12 @@
 namespace jmluang\weapp\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use jmluang\weapp\Models\WeappUser;
+use jmluang\weapp\repositories\UserRepository;
 
-class WeappUser extends Facade
+class WeappUserRepository extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return WeappUser::class;
+        return UserRepository::class;
     }
 }

@@ -4,9 +4,11 @@ namespace jmluang\weapp\repositories;
 
 use jmluang\weapp\WeappUserInterface;
 
+use WeappUser;
+
 class UserRepository implements WeappUserInterface
 {
-    public static function storeUserInfo($userinfo, $skey, $session_key)
+    public function storeUserInfo($userinfo, $skey, $session_key)
     {
         $uuid = bin2hex(openssl_random_pseudo_bytes(16));
         $create_time = date('Y-m-d H:i:s');
@@ -35,7 +37,7 @@ class UserRepository implements WeappUserInterface
         }
     }
 
-    public static function findUserBySKey($skey)
+    public function findUserBySKey($skey)
     {
         return WeappUser::where('skey', $skey)->first();
     }
