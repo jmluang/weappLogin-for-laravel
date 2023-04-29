@@ -22,7 +22,7 @@ class LoginService
     public static function login($code, $encryptData, $iv)
     {
         // 1. 获取 session key
-        $sessionKey = self::getSessionKey($code);
+        list($sessionKey, $openid) = self::getSessionKey($code);
 
         // 2. 生成 3rd key (skey)
         $skey = sha1($sessionKey . mt_rand());
@@ -41,7 +41,9 @@ class LoginService
             OPENSSL_RAW_DATA,
             base64_decode($iv)
         );
-        $userinfo = json_decode($decryptData);
+        $userinfo = json_decode($decryptData, true);
+        $userinfo['openid'] = $openid;
+        
         // 4. 储存到数据库中
         WeappUserRepository::storeUserInfo($userinfo, $skey, $sessionKey);
 
@@ -94,8 +96,7 @@ class LoginService
         $appId = config("weapp.appid");
         $appSecret = config("weapp.secret");
 
-        list($session_key, $openid) = array_values(self::getSessionKeyDirectly($appId, $appSecret, $code));
-        return $session_key;
+        return array_values(self::getSessionKeyDirectly($appId, $appSecret, $code));
     }
 
     /**
