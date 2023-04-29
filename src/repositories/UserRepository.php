@@ -2,10 +2,9 @@
 
 namespace jmluang\weapp\repositories;
 
-use jmluang\weapp\WeappUser as User;
-use jmluang\weapp\WeappUserInterface as UserInterface;
+use jmluang\weapp\WeappUserInterface;
 
-class UserRepository implements UserInterface
+class UserRepository implements WeappUserInterface
 {
     public static function storeUserInfo($userinfo, $skey, $session_key)
     {
@@ -15,10 +14,10 @@ class UserRepository implements UserInterface
         $open_id = $userinfo['openid'];
         $user_info = json_encode($userinfo);
 
-        $res = User::where('open_id', $open_id)->get();
+        $res = WeappUser::where('open_id', $open_id)->get();
 
         if (empty($res->toArray())) {
-            User::insert(
+            WeappUser::insert(
                 compact(
                     'uuid',
                     'skey',
@@ -30,7 +29,7 @@ class UserRepository implements UserInterface
                 )
             );
         } else {
-            User::where('open_id', $open_id)->update(
+            WeappUser::where('open_id', $open_id)->update(
                 compact('uuid', 'skey', 'last_visit_time', 'session_key', 'user_info')
             );
         }
@@ -38,6 +37,6 @@ class UserRepository implements UserInterface
 
     public static function findUserBySKey($skey)
     {
-        return User::where('skey', $skey)->first();
+        return WeappUser::where('skey', $skey)->first();
     }
 }
