@@ -12,7 +12,7 @@ class UserRepository implements UserInterface
         $uuid = bin2hex(openssl_random_pseudo_bytes(16));
         $create_time = date('Y-m-d H:i:s');
         $last_visit_time = $create_time;
-        $open_id = $userinfo->openId;
+        $open_id = $userinfo['openid'];
         $user_info = json_encode($userinfo);
 
         $res = User::where('open_id', $open_id)->get();
